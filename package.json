@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build-app": "rmdir /s /q dist && npx tsc",
-    "heroku": "rmdir /q /s heroku_app\\dist && del heroku_app\\package.json && mkdir heroku_app\\dist && xcopy /e /s dist heroku_app\\dist && copy package.json heroku_app && cd heroku_app && git add . && git commit -m 'publish' && git push heroku main"
+    "heroku": "rmdir /q /s heroku_app\\dist && del heroku_app\\package.json && mkdir heroku_app\\dist && xcopy /e /s dist heroku_app\\dist && copy package.json heroku_app && cd heroku_app && git add . && git commit -m 'publish' && git push heroku master"
   },
   "author": "",
   "license": "ISC",
