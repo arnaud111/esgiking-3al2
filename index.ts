@@ -3,6 +3,8 @@ config();
 
 import express from "express";
 import mongoose, {Mongoose} from "mongoose";
+import {RestaurantController} from "./controllers/restaurant.controller";
+import {AuthController} from "./controllers";
 
 async function startServer(): Promise<void> {
 
@@ -14,6 +16,12 @@ async function startServer(): Promise<void> {
     });
 
     const app = express();
+
+    const restaurantController = new RestaurantController();
+    app.use('/restaurant', restaurantController.buildRoutes());
+
+    const authController = new AuthController();
+    app.use('/auth', authController.buildRoutes());
 
     app.listen(process.env.PORT, function() {
         console.log("Server listening on port " + process.env.PORT);

@@ -16,6 +16,8 @@ const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const restaurant_controller_1 = require("./controllers/restaurant.controller");
+const controllers_1 = require("./controllers");
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const m = yield mongoose_1.default.connect(process.env.MONGO_URI, {
@@ -25,6 +27,10 @@ function startServer() {
             }
         });
         const app = (0, express_1.default)();
+        const restaurantController = new restaurant_controller_1.RestaurantController();
+        app.use('/restaurant', restaurantController.buildRoutes());
+        const authController = new controllers_1.AuthController();
+        app.use('/auth', authController.buildRoutes());
         app.listen(process.env.PORT, function () {
             console.log("Server listening on port " + process.env.PORT);
         });
